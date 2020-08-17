@@ -36,10 +36,10 @@ Things you may want to cover:
 | first_name    |string|null: false|
 | kana_last_name|string|null: false|
 |kana_first_name|string|null: false|
-| birth         |Date  |null: false|
+| birth         |date  |null: false|
 
 ###Association
-- has_many :item
+- has_many :items
 - has_many :purchases
 
 ## items テーブル
@@ -65,10 +65,11 @@ Things you may want to cover:
 
 | Column    |Type     |  Options   |
 |-----------|---------|------------|
-|post_number| string  |null: false|
-|cities     | string  |null: false|
-|house_number|string  |null: false|
-|building   |string   |           |
+|post_number| string  |null: false |
+|prefecture | integer |null: false |
+|cities     | string  |null: false |
+|house_number|string  |null: false |
+|building   |string   |            |
 |telephone_number|string|null: false|
 
 ###Association
