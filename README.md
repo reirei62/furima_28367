@@ -27,58 +27,67 @@ Things you may want to cover:
  
 ## users テーブル
 
-| Column    | Type | Options   |
-|-----------|------|-----------|
+| Column        | Type | Options   |
+|---------------|------|-----------|
 | nickname      |string|null: false|
-| email     |string|null: false|
-| password  |string|null: false|
-| last_name |string|null: false|
-| first_name|string|null: false|
-| birth     |Date  |null: false|
+| email         |string|null: false|
+| password      |string|null: false|
+| last_name     |string|null: false|
+| first_name    |string|null: false|
+| kana_last_name|string|null: false|
+|kana_first_name|string|null: false|
+| birth         |Date  |null: false|
 
 ###Association
-- has_many :sells
+- has_many :item_users
+- has_many :items,through :item_users
 - has_many :purchases
 
+## items テーブル
 
-
-## sells テーブル
-
-| Column     | Type  |  Options   |
-|------------|-------|------------|
-| user_id    |references|null: false, foreign_key: true |
-| name       |string | null: false|
-| price      |integer| null: false|
-| content    |string | null: false|
-| category   |string | null: false|
-|product_state|string| null: false|
-|delivery_fee|boolean| null: false|
-|shipper_area|string | null: false|
-| ship_days  |string | null: false|
+| Column     | Type   |  Options   |
+|------------|--------|------------|
+| user       |references|null: false, foreign_key: true |
+| name       |string  | null: false|
+| price      |integer | null: false|
+| content    |text    | null: false|
+| category   |integer | null: false|
+|product_state|integer| null: false|
+|delivery_fee|integer | null: false|
+|shipper_area|integer | null: false|
+| ship_days  |integer | null: false|
 
 ###Association
-- belongs_to :user
+- has_many :item_users
+- has_many :users,through :item_users
 - has_one :purchase
-
 
 
 ## purchases テーブル
 
 | Column    |Type     |  Options   |
 |-----------|---------|------------|
-| user_id   |references|null: false,foreign_key: true|
-| sell_id   |references|null: false,foreign_key: true|
-| card_number|integer |null: false|
-| month     | byte    |null: false|
-| year      | byte    |null: false|
-| CVC       | integer |null: false|
-|post_number| integer |null: false|
+| user      |references|null: false,foreign_key: true|
+| item      |references|null: false,foreign_key: true|
+|post_number| string  |null: false|
 |prefecture | string  |null: false|
 |cities     | string  |null: false|
 |house_number|string  |null: false|
-|building   |string   |null: false|
-|telephone_number|integer|null: false|
+|building   |string   |           |
+|telephone_number|string|null: false|
 
 ###Association
 - belongs_to :user
-- belongs_to :sell
+- belongs_to :item
+
+
+## item_users テーブル
+
+| Column  |  Type   |  Options   |
+|---------|---------|------------|
+| user    |references|null: false,foreign_key: true|
+| item    |references|null: false,foreign_key: true|
+
+###Association
+- belongs_to :item
+- belongs_to :user
