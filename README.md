@@ -77,6 +77,7 @@ Things you may want to cover:
 |cities     | string  |null: false|
 |house_number|string  |null: false|
 |building   |string   |null: false|
+|telephone_number|integer|null: false|
 
 ###Association
 - belongs_to :user
