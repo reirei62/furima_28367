@@ -39,8 +39,7 @@ Things you may want to cover:
 | birth         |Date  |null: false|
 
 ###Association
-- has_many :item_users
-- has_many :items,through :item_users
+- has_many :item
 - has_many :purchases
 
 ## items テーブル
@@ -58,30 +57,25 @@ Things you may want to cover:
 | ship_days  |integer | null: false|
 
 ###Association
-- has_many :item_users
-- has_many :users,through :item_users
+- belongs_to :user
 - has_one :purchase
 
 
-## purchases テーブル
+## address テーブル
 
 | Column    |Type     |  Options   |
 |-----------|---------|------------|
-| user      |references|null: false,foreign_key: true|
-| item      |references|null: false,foreign_key: true|
 |post_number| string  |null: false|
-|prefecture | string  |null: false|
 |cities     | string  |null: false|
 |house_number|string  |null: false|
 |building   |string   |           |
 |telephone_number|string|null: false|
 
 ###Association
-- belongs_to :user
-- belongs_to :item
+- belongs_to :purchase
 
 
-## item_users テーブル
+## purchases テーブル
 
 | Column  |  Type   |  Options   |
 |---------|---------|------------|
@@ -91,3 +85,4 @@ Things you may want to cover:
 ###Association
 - belongs_to :item
 - belongs_to :user
+- has_one :address
