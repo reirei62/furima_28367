@@ -2,12 +2,14 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :genre
+  belongs_to_active_hash :category
+  belongs_to_active_hash :state
+  belongs_to_active_hash :delivery
 
   #空の投稿を保存できないようにする
-  validates :genre, presence: true
+  validates :image,:item_name,:content,:price, :category,:product_state_id,:delivery_fee_id,:shipper_area_id,:ship_days_id, presence: true
 
   #ジャンルの選択が「--」の時は保存できないようにする
-  validates :category, numericality: { other_than: 1 } 
+  validates :category_id, :product_state_id,:delivery_fee_id,:shipper_area_id,:ship_days_id, numericality: { other_than: 1 } 
  
 end
