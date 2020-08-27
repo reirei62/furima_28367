@@ -6,7 +6,7 @@ const addTax = document.getElementById("add-tax-price");
 const profit = document.getElementById("profit");
 
 
-input.addEventListener("change", (e)=>{
+input.addEventListener("keyup", (e)=>{
   const value = input.value;
   console.log(value);
   if(value >= 300 && value <= 9999999){
