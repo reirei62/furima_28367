@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery
   
   belongs_to :user
+  has_one :purchase
   #空の投稿を保存できないようにする
   validates :image,:item_name,:content,:price, :category,:product_state_id,:delivery_fee_id,:shipper_area_id,:ship_days_id, presence: true
 
