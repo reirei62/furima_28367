@@ -1,4 +1,4 @@
-class State < ActiveHash::Base
+class ProductState < ActiveHash::Base
   self.data =[
     {id: 201, states: '新品、未使用'},
     {id: 202, states: '未使用に近い'},

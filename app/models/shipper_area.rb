@@ -1,8 +1,5 @@
-class Delivery < ActiveHash::Base
-  self.data =[
-    {id:301, text: '着払い(購入者負担)' ,type:"burden"},
-    {id:302 , text: '送料込み(出品者負担)',type:"burden"},
-
+class ShipperArea < ActiveHash::Base
+self.data = [
     {id: 1, name: '北海道',type: "prefecture"}, {id: 2, name: '青森県',type: "prefecture"}, {id: 3, name: '岩手県',type: "prefecture"},
     {id: 4, name: '宮城県',type: "prefecture"}, {id: 5, name: '秋田県',type: "prefecture"}, {id: 6, name: '山形県',type: "prefecture"},
     {id: 7, name: '福島県',type: "prefecture"}, {id: 8, name: '茨城県',type: "prefecture"}, {id: 9, name: '栃木県',type: "prefecture"},
@@ -19,9 +16,5 @@ class Delivery < ActiveHash::Base
     {id: 40, name: '福岡県',type: "prefecture"}, {id: 41, name: '佐賀県',type: "prefecture"}, {id: 42, name: '長崎県',type: "prefecture"},
     {id: 43, name: '熊本県',type: "prefecture"}, {id: 44, name: '大分県',type: "prefecture"}, {id: 45, name: '宮崎県',type: "prefecture"},
     {id: 46, name: '鹿児島県',type: "prefecture"}, {id: 47, name: '沖縄県',type: "prefecture"},
-
-    {id:401, date:'1~2日で発送',type: "date"},
-    {id:402, date:'2~3日で発送',type: "date"},
-    {id:403, date:'4~7日で発送',type: "date"}
-  ]
+]
 end
