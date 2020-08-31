@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase
   #空の投稿を保存できないようにする
-  validates :image,:item_name,:content,:price, :category,:product_state,:delivery_fee,:shipper_area,:ship_days, presence: true
+  validates :image,:item_name,:content,:price, :category_id,:product_state_id,:delivery_fee_id,:shipper_area_id,:ship_days_id, presence: true
 
  
   
