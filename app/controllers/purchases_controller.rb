@@ -1,10 +1,15 @@
 class PurchasesController < ApplicationController
+before_action :login_check
+before_action :set_item,only:[:index,:create,:move_to_top,:reject_purchase_page]
+before_action :move_to_top
+before_action :reject_purchase_page
+
   def index
-    @item=Item.find(params[:format])
   end
+
   def create
-    price=@item.price
-    @purchase = Purchase.new(price: price(purchase_params[:price]))
+    @purchase = ItemPurchase.new(purchase_params)
+    @purchase.price= @item.price
     if @purchase.valid?
       pay_item
       @purchase.save
@@ -17,15 +22,37 @@ class PurchasesController < ApplicationController
   private
  
   def purchase_params
-    params.permit(:price, :token)
+    params.permit(:token,:post_number,:prefecture,:cities,:house_number,:building,:telephone_number,:price,:item_id,:purchase_id).merge(user_id: current_user.id)
   end
 
-  def pay_item
-    Payjp.api_key = "sk_test_17553915fcd272ad285f7d1e"  # PAY.JPテスト秘密鍵
+
+  def pay_item 
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
-      amount: order_params[:price],  # 商品の値段
-      card: order_params[:token],    # カードトークン
+      amount: @purchase.price,
+      card: purchase_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類(日本円)
     )
+  end
+
+
+  def login_check
+    authenticate_user!
+  end
+
+  def move_to_top
+    if @item.user==current_user
+      redirect_to root_path
+    end
+  end
+
+  def reject_purchase_page   
+    if @item.purchase
+      redirect_to root_path
+    end
+  end
+
+  def set_item
+    @item =Item.find(params[:item_id])
   end
 end
