@@ -33,17 +33,17 @@ RSpec.describe User do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include 'Email has already been taken'
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'emailに＠がなければ登録できない' do
         @user.email='test.yahoo.jp'
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Email is invalid'
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordが空では登録できない' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password can't be blank"
+        expect(@user.errors.full_messages).to include("Password can't be blank")
       end
       it 'passwordが5文字以下であれば登録できない' do
         @user.password = 'aaaa1'
@@ -73,7 +73,7 @@ RSpec.describe User do
       it 'kana_last_nameがカタカナでなければ登録ができない' do
         @user.kana_last_name = 'たなか'
         @user.valid?
-        expect(@user.errors)
+        expect(@user.errors.full_messages).to include("Kana last name is invalid")
       end
       it 'kana_first_nameが空では登録ができない' do
         @user.kana_first_name = ''
@@ -83,7 +83,7 @@ RSpec.describe User do
       it 'kana_first_nameがカタカナでなければ登録ができない' do
         @user.kana_first_name = 'けんじ'
         @user.valid?
-        expect(@user.errors)
+        expect(@user.errors.full_messages).to include("Kana first name is invalid")
       end
       it 'birthが空では登録ができない' do
         @user.birth = ''
