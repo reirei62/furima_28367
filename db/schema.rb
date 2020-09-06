@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 2020_09_04_082642) do
     t.integer "price", null: false
     t.text "content", null: false
     t.integer "category_id", null: false
-    t.integer "product_state_id", null: false
-    t.integer "delivery_fee_id", null: false
-    t.integer "shipper_area_id", null: false
-    t.integer "ship_days_id", null: false
+    t.integer "product_state", null: false
+    t.integer "delivery_fee", null: false
+    t.integer "shipper_area", null: false
+    t.integer "ship_days", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
