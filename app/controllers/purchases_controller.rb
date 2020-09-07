@@ -24,12 +24,12 @@ before_action :reject_purchase_page
   def purchase_params
     params.permit(:token,:post_number,:prefecture,:cities,:house_number,:building,:telephone_number,:price,:item_id,:purchase_id).merge(user_id: current_user.id)
   end
-
+#
 
   def pay_item 
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
-      amount: @purchase.price,
+      amount: @purchase.price,         #金額
       card: purchase_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類(日本円)
     )
